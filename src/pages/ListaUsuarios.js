@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import userService from '../services/userService';
 
+
 function UsuarioLista() {
     const [users, setUsers] = useState([]);
     const [editingUserId, setEditingUserId] = useState(null);
     const [editData, setEditData] = useState({ nome: '', email: '', cpf: '' });
     const [error, setError] = useState(null);
+
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -20,15 +22,18 @@ function UsuarioLista() {
         fetchUsers();
     }, []);
 
+
     const handleEditClick = (user) => {
         setEditingUserId(user.id);
         setEditData({ nome: user.nome, email: user.email, cpf: user.cpf });
     };
 
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setEditData((prevData) => ({ ...prevData, [name]: value }));
     };
+
 
     const handleUpdateSubmit = async (userId) => {
         try {
@@ -40,6 +45,7 @@ function UsuarioLista() {
             console.error(err);
         }
     };
+
 
     return (
         <div className="container mt-5">
@@ -113,4 +119,7 @@ function UsuarioLista() {
     );
 }
 
+
 export default UsuarioLista;
+
+

@@ -1,12 +1,13 @@
-// src/pages/ListaProdutos.js
 import React, { useEffect, useState } from 'react';
 import productService from '../services/productService';
+
 
 const ListaProdutos = () => {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
     const [editingProduct, setEditingProduct] = useState(null);
-    const [editFormData, setEditFormData] = useState({ name: '', price: '', userId: '' });
+    const [editFormData, setEditFormData] = useState({ name: '', price: '', });
+
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -21,14 +22,15 @@ const ListaProdutos = () => {
         fetchProducts();
     }, []);
 
+
     const handleEditClick = (product) => {
         setEditingProduct(product.id);
         setEditFormData({
             name: product.name,
             price: product.price,
-            userId: product.userId,
         });
     };
+
 
     const handleEditChange = (e) => {
         const { name, value } = e.target;
@@ -37,6 +39,7 @@ const ListaProdutos = () => {
             [name]: value,
         }));
     };
+
 
     const handleEditSubmit = async (e) => {
         e.preventDefault();
@@ -51,6 +54,7 @@ const ListaProdutos = () => {
         }
     };
 
+
     return (
         <div className="container mt-5">
             <h2>Lista de Produtos</h2>
@@ -63,7 +67,6 @@ const ListaProdutos = () => {
                         <li key={product.id} className="list-group-item">
                             <strong>Nome:</strong> {product.name} <br />
                             <strong>Preço:</strong> R$ {product.price.toFixed(2)} <br />
-                            <strong>ID do Usuário:</strong> {product.userId}
                             <br />
                             <button
                                 className="btn btn-primary btn-sm mt-2"
@@ -112,5 +115,6 @@ const ListaProdutos = () => {
         </div>
     );
 };
+
 
 export default ListaProdutos;

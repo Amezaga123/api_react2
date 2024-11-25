@@ -1,14 +1,16 @@
-// src/pages/CadastroProduto.js
 import React, { useState } from 'react';
 import productService from '../services/productService';
+
 
 const CadastroProduto = () => {
     const [product, setProduct] = useState({ name: '', price: '', userId: '' });
     const [error, setError] = useState('');
 
+
     const handleChange = (e) => {
         setProduct({ ...product, [e.target.name]: e.target.value });
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,6 +23,7 @@ const CadastroProduto = () => {
             console.error(err);
         }
     };
+
 
     return (
         <div className="container mt-5">
@@ -52,24 +55,12 @@ const CadastroProduto = () => {
                         required
                     />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="userId" className="form-label">ID do Usuário</label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        id="userId"
-                        name="userId"
-                        placeholder="ID do Usuário"
-                        value={product.userId}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
                 <button type="submit" className="btn btn-primary">Cadastrar</button>
                 {error && <p className="text-danger mt-2">{error}</p>}
             </form>
         </div>
     );
 };
+
 
 export default CadastroProduto;

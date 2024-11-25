@@ -1,10 +1,11 @@
-// components/ProdutoLista.js
 import React, { useEffect, useState } from 'react';
 import productService from '../services/productService';
+
 
 function ProdutoLista() {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
+
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -18,6 +19,7 @@ function ProdutoLista() {
         };
         fetchProducts();
     }, []);
+
 
     return (
         <div className="container mt-5">
@@ -39,5 +41,6 @@ function ProdutoLista() {
         </div>
     );
 }
+
 
 export default ProdutoLista;

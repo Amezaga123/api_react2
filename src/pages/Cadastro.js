@@ -1,6 +1,6 @@
-// src/pages/Cadastro.js
 import React from 'react';
 import UsuarioForm from '../components/UsuarioForm';
+
 
 const Cadastro = () => {
     return (
@@ -11,4 +11,7 @@ const Cadastro = () => {
     );
 };
 
+
 export default Cadastro;
+
+

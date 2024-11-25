@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import userService from '../services/userService';
 
+
 function UsuarioForm() {
     const [user, setUser] = useState({ nome: '', email: '', cpf: '', senha: '' });
     const [error, setError] = useState('');
 
+
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,6 +23,7 @@ function UsuarioForm() {
             console.error(err);
         }
     };
+
 
     return (
         <div className="container mt-5">
@@ -83,5 +87,6 @@ function UsuarioForm() {
         </div>
     );
 }
+
 
 export default UsuarioForm;

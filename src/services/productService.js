@@ -1,7 +1,8 @@
-// src/services/productService.js
 import axios from 'axios';
 
+
 const apiUrl = 'http://localhost:3000/api/products';
+
 
 const productService = {
     register: async (product) => {
@@ -21,7 +22,6 @@ const productService = {
             throw error;
         }
     },
-// Adicione isso ao seu productService.js
     updateProduct: async (id, updatedProduct) => {
     try {
         await axios.put(`${apiUrl}/update/${id}`, updatedProduct);
@@ -31,6 +31,10 @@ const productService = {
     }
 },
 
+
 };
 
+
 export default productService;
+
+

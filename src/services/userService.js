@@ -1,6 +1,8 @@
 import axios from 'axios';
 
+
 const apiUrl = 'http://localhost:3000/api/users';
+
 
 const userService = {
     register: async (user) => {
@@ -28,7 +30,10 @@ const userService = {
             throw error;
         }
     },
-    
+   
 };
 
+
 export default userService;
+
+

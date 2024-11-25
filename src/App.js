@@ -1,13 +1,11 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Cadastro from './pages/Cadastro';
 import ListaUsuarios from './pages/ListaUsuarios';
-import CadastroProduto from './pages/CadastroProduto'; // Importando o novo componente
-import ListaProdutos from './pages/ListaProdutos'; // Importando o novo componente
-import AtualizarUsuario from './components/AtualizarUsuario';
-import UserUpdate from './pages/UserUpdate';
-
+import CadastroProduto from './pages/CadastroProduto';
+import ListaProdutos from './pages/ListaProdutos';
+import SaleForm from './components/SaleForm';
+import ListaVendas from './pages/ListaVendas';
 
 const App = () => {
     return (
@@ -30,18 +28,24 @@ const App = () => {
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/produtos">Lista de Produtos</Link>
                                 </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/vendas">Cadastrar Venda</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/lista-vendas">Lista de Vendas</Link>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
                 <Routes>
-                    <Route path="/update-user/:userId" element={<UserUpdate />} />
-                    <Route path="/atualizar-usuario/:id" element={<AtualizarUsuario />} />
                     <Route path="/cadastro" element={<Cadastro />} />
                     <Route path="/usuarios" element={<ListaUsuarios />} />
-                    <Route path="/cadastro-produto" element={<CadastroProduto />} /> {/* Nova rota */}
-                    <Route path="/produtos" element={<ListaProdutos />} /> {/* Nova rota */}
-                    <Route path="/" element={<Cadastro />} /> {/* Página inicial */}
+                    <Route path="/cadastro-produto" element={<CadastroProduto />} />
+                    <Route path="/produtos" element={<ListaProdutos />} />
+                    <Route path="/vendas" element={<SaleForm />} />
+                    <Route path="/lista-vendas" element={<ListaVendas />} />
+                    <Route path="/" element={<Cadastro />} />
                 </Routes>
             </div>
         </Router>

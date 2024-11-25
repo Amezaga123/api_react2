@@ -1,44 +1,55 @@
 import React, { useState } from 'react';
 import productService from '../services/productService';
 
-function ProdutoForm() {
-    const [product, setProduct] = useState({ name: '', price: '', userId: '' });
-    const [error, setError] = useState('');
+function ProductForm() {
+    const [product, setProduct] = useState({
+        nome: '',
+        preco: '',
+    });
 
     const handleChange = (e) => {
-        setProduct({ ...product, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setProduct((prevProduct) => ({
+            ...prevProduct,
+            [name]: value,
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await productService.register(product);
-            alert('Produto cadastrado com sucesso!');
-            setProduct({ name: '', price: '', userId: '' });
-        } catch (err) {
-            setError('Erro ao cadastrar produto. Tente novamente.');
-            console.error(err);
+            await productService.createProduct(product);  
+            alert('Produto criado com sucesso!');
+        } catch (error) {
+            console.error('Erro ao criar produto:', error);
+            alert('Erro ao criar produto');
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Nome:</label>
-                <input type="text" name="name" value={product.name} onChange={handleChange} required />
-            </div>
-            <div>
-                <label>Preço:</label>
-                <input type="number" name="price" value={product.price} onChange={handleChange} required />
-            </div>
-            <div>
-                <label>ID do Usuário:</label>
-                <input type="text" name="userId" value={product.userId} onChange={handleChange} required />
-            </div>
-            <button type="submit">Cadastrar Produto</button>
-            {error && <p>{error}</p>}
-        </form>
+        <div>
+            <h2>Criar Produto</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="nome"
+                    value={product.nome}
+                    onChange={handleChange}
+                    placeholder="Nome do Produto"
+                    required
+                />
+                <input
+                    type="number"
+                    name="preco"
+                    value={product.preco}
+                    onChange={handleChange}
+                    placeholder="Preço"
+                    required
+                />
+                <button type="submit">Cadastrar Produto</button>
+            </form>
+        </div>
     );
 }
 
-export default ProdutoForm;
+export default ProductForm;
